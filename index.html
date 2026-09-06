@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sani</title>
-<meta name="description" content="Sani — developer.">
+<meta name="description" content="Sani — educator teaching computer science to teens in Korea.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235AC8D8'/%3E%3Cstop offset='.5' stop-color='%23599BF8'/%3E%3Cstop offset='1' stop-color='%236E45E8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='32' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,35 +22,109 @@
       radial-gradient(120% 90% at 0% 100%, rgba(59,107,238,.95) 0%, rgba(59,107,238,0) 60%),
       radial-gradient(130% 100% at 100% 100%, rgba(110,69,232,.98) 0%, rgba(110,69,232,0) 62%);
     display:flex;align-items:center;justify-content:center;
-    text-align:center;padding:24px;
+    text-align:center;padding:24px 14px;
   }
   main{transform:translateY(-4vh)}
   h1{
     font-size:clamp(44px,9vw,76px);
-    font-weight:700;letter-spacing:.02em;
+    font-weight:700;letter-spacing:.02em;line-height:1.1;
     text-shadow:0 2px 24px rgba(10,20,60,.25);
   }
-  p.tag{
+  .role{
     margin-top:10px;
-    font-size:clamp(15px,2.4vw,19px);
-    font-weight:400;color:rgba(255,255,255,.85);
-    letter-spacing:.01em;
+    font-size:min(1.55vw,12.5px);
+    font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(255,255,255,.72);
   }
-  footer{
-    position:fixed;left:0;right:0;bottom:26px;
-    font-size:13.5px;color:rgba(255,255,255,.75);
+  p.tag{
+    margin-top:20px;
+    font-size:min(2.4vw,18px);
+    font-weight:400;color:rgba(255,255,255,.92);
+    letter-spacing:.01em;line-height:1.7;
+    white-space:nowrap;
   }
-  footer a{color:rgba(255,255,255,.9);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px}
-  footer a:hover{color:#fff;border-bottom-color:rgba(255,255,255,.8)}
+  p.tag .sub{
+    display:block;margin-top:7px;
+    font-size:min(2vw,15.5px);
+    color:rgba(255,255,255,.74);
+    white-space:nowrap;
+  }
+  p.tag .sub:first-of-type{margin-top:12px}
+
+  /* language switch */
+  .lang{
+    position:fixed;top:22px;right:24px;
+    display:flex;align-items:center;gap:2px;
+    padding:4px;border-radius:999px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.22);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  }
+  .lang button{
+    font:inherit;font-size:12.5px;font-weight:500;letter-spacing:.04em;
+    color:rgba(255,255,255,.75);
+    background:transparent;border:0;cursor:pointer;
+    padding:5px 12px;border-radius:999px;
+    transition:background .18s ease,color .18s ease;
+  }
+  .lang button:hover{color:#fff;background:rgba(255,255,255,.14)}
+  .lang button[aria-pressed="true"]{
+    color:#2b4bb8;background:#fff;
+    box-shadow:0 1px 6px rgba(10,20,60,.18);
+  }
+  .lang button:focus-visible{outline:2px solid rgba(255,255,255,.85);outline-offset:2px}
+  @media (max-width:480px){ .lang{top:14px;right:14px} }
 </style>
 </head>
 <body>
+<nav class="lang" aria-label="Language">
+  <button type="button" data-lang="en" aria-pressed="true">EN</button>
+  <button type="button" data-lang="ko" aria-pressed="false">KR</button>
+</nav>
+
 <main>
   <h1>Sani</h1>
-  <p class="tag">.</p>
+  <p class="role">Educator</p>
+  <p class="tag">
+    <span class="line1">Teaching computer science to teens in Korea.</span>
+    <span class="sub sub1">Computational thinking solves not just today's problems, but tomorrow's.</span>
+    <span class="sub sub2">Interested in using AI to improve teaching and reduce administrative workload.</span>
+  </p>
 </main>
-<footer>
-  <a href="https://dinosinfolee.github.io/policy/syntax-palette/">Syntax Palette</a> · <a href="mailto:dinosinfolee@gmail.com">Contact</a>
-</footer>
+
+<script>
+  const TEXT={
+    en:{
+      title:'Sani',
+      role:'Educator',
+      line1:'Teaching computer science to teens in Korea.',
+      sub1:"Computational thinking solves not just today's problems, but tomorrow's.",
+      sub2:'Interested in using AI to improve teaching and reduce administrative workload.'
+    },
+    ko:{
+      title:'사니',
+      role:'Educator',
+      line1:'한국에서 청소년을 대상으로 컴퓨터과학 교육을 하고 있습니다.',
+      sub1:'컴퓨팅 사고력은 현재의 문제를 넘어 미래의 문제까지 해결할 수 있는 중요한 역량입니다.',
+      sub2:'인공지능을 활용한 수업 개선과 행정 업무 경감에 관심이 많습니다.'
+    }
+  };
+  const el={
+    title:document.querySelector('h1'),
+    role:document.querySelector('.role'),
+    line1:document.querySelector('.line1'),
+    sub1:document.querySelector('.sub1'),
+    sub2:document.querySelector('.sub2')
+  };
+  const btns=document.querySelectorAll('.lang button');
+
+  function setLang(lang){
+    const t=TEXT[lang];
+    for(const k in el) el[k].textContent=t[k];
+    document.documentElement.lang=lang;
+    btns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  }
+  btns.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+</script>
 </body>
 </html>
